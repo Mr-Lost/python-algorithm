@@ -5,8 +5,6 @@ import random
 class Sort:
     def __init__(self):
         self.list1 = [random.randint(0, 100) for i in range(10)]
-        # for each in range(10):
-        #     self.list1.append(random.randint(0, 100))
 
     # 直接插排：从头开始每次取后面的一个数依次跟前面所有数比较并插入；稳定
     def straight_insertion_sort(self):   
