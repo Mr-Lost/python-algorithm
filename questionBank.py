@@ -24,18 +24,18 @@ class Solution:
         # ans = 0
         # temp = num
         # if num == 0:
-        #     return 1 == 1
+        #     return True
         # if num < 0 or num % 10 == 0:
-        #     return 1 == 0
+        #     return False
         # else:
         #     while num > 0:
         #         ans *= 10
         #         ans += num % 10
         #         num //= 10
         #     if ans == temp:
-        #         return 1 == 1
+        #         return True
         #     else:
-        #         return 1 == 0
+        #         return False
 
     # 4.罗马数字转整数(IV=4, IX=9, XL=40, XC=90, CD=400, CM=900)
     def romanToInt(self, roman):
@@ -62,8 +62,33 @@ class Solution:
         #         'IV': 3, 'IX': 8, 'XL': 30, 'XC': 80, 'CD': 300, 'CM': 800}
         # return sum(temp.get(roman[i-1:i+1], temp[n]) for i, n in enumerate(roman))
 
+    # 5.查找字符串数组中最长公共前缀
+    def longestCommonPrefix(self, strs):
+        ans = ''
+        for i in zip(*strs):
+            if len(set(i)) == 1:
+                ans += i[0]
+            else:
+                break
+        return ans
+
+    # 6.判断左右括号闭合是否有效
+    def isValid(self, s):
+        temp = {'(': ')', '[': ']', '{': '}', '/': '/'}
+        stack = ['/']
+        for i in s:
+            if i in temp:
+                stack.append(temp[i])
+            elif stack.pop() != i:
+                return False
+        return len(stack) == 1
+
 
 if __name__ == '__main__':
-    print(Solution().twoSum(nums=[0, 2, 4, 3], target=5))
-    print(Solution().isPalindrome(1234321))
-    print(Solution().romanToInt('MCMXCIV'))
+    lmr = Solution()
+    # print(lmr.twoSum(nums=[0, 2, 4, 3], target=5))
+    # print(lmr.isPalindrome(1234321))
+    # print(lmr.romanToInt('MCMXCIV'))
+    print(lmr.longestCommonPrefix(['fly', 'float', 'flow']))
+
+
