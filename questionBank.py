@@ -90,5 +90,6 @@ if __name__ == '__main__':
     # print(lmr.isPalindrome(1234321))
     # print(lmr.romanToInt('MCMXCIV'))
     print(lmr.longestCommonPrefix(['fly', 'float', 'flow']))
+    print(lmr.isValid('{[[([])]()]}'))
 
 
