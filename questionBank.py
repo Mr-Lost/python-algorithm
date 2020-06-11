@@ -75,7 +75,7 @@ class Solution:
     # 6.判断左右括号闭合是否有效
     def isValid(self, s):
         temp = {'(': ')', '[': ']', '{': '}', '/': '/'}
-        stack = ['/']
+        stack = ['/']   # 赋初值为了避免没有元素时，pop()报错
         for i in s:
             if i in temp:
                 stack.append(temp[i])
@@ -85,10 +85,47 @@ class Solution:
 
     # 7.删除一个排序数列中重复的元素后，返回新数组的长度
     def removeDuplicates(self, nums):
+        nums.sort()
         for i in range(len(nums)-1, 0, -1):
             if nums[i] == nums[i-1]:
                 nums.pop(i)
         return len(nums)
+
+    # 8.删除数组中所有的某个特定值，并返回数组长度
+    def removeElement(self, nums, val):
+        for i in range(len(nums) - 1, -1, -1):
+            if nums[i] == val:
+                nums.pop(i)
+        return len(nums)
+        # (1)不删除元素，仅返回数组长度
+        # return len(nums) - nums.count(val)
+
+    # 9. 在字符串1中找到字符串2出现的第一个位置
+    def strStr(self, str1, str2):
+        if str2 == '':
+            return 0
+        for index, i in enumerate(str1):
+            if i == str2[0]:
+                if str1[index:index+len(str2)] == str2:
+                    return index
+        return -1
+        # (1)
+        # return str1.find(str2) if str2 != '' else 0
+
+    # 10. 在一个升序排列的数组中查找指定元素，有则返回下标，无则返回按序插入的位置
+    def searchInsert(self, nums, target):
+        if target not in nums:
+            nums.append(target)
+            nums.sort()
+        return nums.index(target)
+        # (1) 二分法
+        # if target > nums[-1]:
+        #     return len(nums)
+        # mid = len(nums) // 2
+        # temp = nums[:mid+1] if target < nums[mid] else nums[mid:]
+        # for i in temp:
+        #     if target <= i:
+        #         return nums.index(i)
 
 
 if __name__ == '__main__':
@@ -96,7 +133,9 @@ if __name__ == '__main__':
     # print(lmr.twoSum(nums=[0, 2, 4, 3], target=5))
     # print(lmr.isPalindrome(1234321))
     # print(lmr.romanToInt('MCMXCIV'))
-    print(lmr.longestCommonPrefix(['fly', 'float', 'flow']))
-    print(lmr.isValid('{[[([])]()]}'))
+    # print(lmr.longestCommonPrefix(['fly', 'float', 'flow']))
+    # print(lmr.isValid('{[[([])]()]}'))
+    # print(lmr.removeElement([1,2,3,3,2,4,5], 3))
+    print(lmr.strStr('good', ''))
 
 
