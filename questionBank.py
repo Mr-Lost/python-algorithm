@@ -119,7 +119,7 @@ class Solution:
             nums.append(target)
             nums.sort()
         return nums.index(target)
-        # (1) 二分法
+        # (1)二分法
         # if target > nums[-1]:
         #     return len(nums)
         # mid = len(nums) // 2
@@ -145,6 +145,20 @@ class Solution:
             ans += '{}{}'.format(count, current)
             exam = ans
         return exam
+        # (1)递归
+        # if n <= 1:
+        #     return '1'
+        # exam = self.countAndSay(n-1)
+        # ans = ''
+        # count = 1
+        # for i in range(1, len(exam)):
+        #     if exam[i-1] == exam[i]:
+        #         count += 1
+        #     else:
+        #         ans += '{}{}'.format(count, exam[i-1])
+        #         count = 1
+        # ans += '{}{}'.format(count, exam[-1])
+        # return ans
 
 
 if __name__ == '__main__':
@@ -155,6 +169,8 @@ if __name__ == '__main__':
     # print(lmr.longestCommonPrefix(['fly', 'float', 'flow']))
     # print(lmr.isValid('{[[([])]()]}'))
     # print(lmr.removeElement([1,2,3,3,2,4,5], 3))
-    print(lmr.strStr('good', ''))
+    # print(lmr.strStr('good', ''))
+    print(lmr.countAndSay(4))
+    print(lmr.countAndSay(3))
 
 
