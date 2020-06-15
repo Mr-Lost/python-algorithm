@@ -1,3 +1,9 @@
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+
 class Solution:
     # #easy
     # 1.数组中找出和为给定值的一组数并返回其下标
@@ -101,7 +107,7 @@ class Solution:
         # (1)不删除元素，仅返回数组长度
         # return len(nums) - nums.count(val)
 
-    # 28. 在字符串1中找到字符串2出现的第一个位置
+    # 28.在字符串1中找到字符串2出现的第一个位置
     def strStr(self, str1, str2):
         if str2 == '':
             return 0
@@ -113,7 +119,7 @@ class Solution:
         # (1)
         # return str1.find(str2) if str2 != '' else 0
 
-    # 35. 在一个升序排列的数组中查找指定元素，有则返回下标，无则返回按序插入的位置
+    # 35.在一个升序排列的数组中查找指定元素，有则返回下标，无则返回按序插入的位置
     def searchInsert(self, nums, target):
         if target not in nums:
             nums.append(target)
@@ -159,6 +165,20 @@ class Solution:
         #         count = 1
         # ans += '{}{}'.format(count, exam[-1])
         # return ans
+
+    # #normal
+    # 2.非空链表逆序存储两个正数，返回相加结果的新链表
+    def addTwoNumbers(self, li1, li2):
+        head = temp = ListNode(None)
+        ans = 0
+        while li1 or li2 or ans:
+            ans += li1.val if li1 else 0 + li2.val if li2 else 0
+            temp.next = ListNode(ans % 10)
+            temp = temp.next
+            ans //= 10
+            li1 = li1.next if li1 else None
+            li2 = li2.next if li2 else None
+        return head.next
 
 
 if __name__ == '__main__':
