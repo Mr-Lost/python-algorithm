@@ -180,6 +180,17 @@ class Solution:
             li2 = li2.next if li2 else None
         return head.next
 
+    # 3.返回字符串中最长不重复子串的长度
+    def lengthOfLongestSubstring(self, s):
+        temp = dict()
+        index, ans = 0, 0
+        for i in range(len(s)):
+            if s[i] in temp:
+                index = max(temp[s[i]], index)
+            ans = max(ans, i - index + 1)
+            temp[s[i]] = i + 1
+        return ans
+
 
 if __name__ == '__main__':
     lmr = Solution()
