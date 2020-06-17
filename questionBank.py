@@ -172,7 +172,7 @@ class Solution:
         head = temp = ListNode(None)
         ans = 0
         while li1 or li2 or ans:
-            ans += li1.val if li1 else 0 + li2.val if li2 else 0
+            ans += (li1.val if li1 else 0) + (li2.val if li2 else 0)
             temp.next = ListNode(ans % 10)
             temp = temp.next
             ans //= 10
@@ -202,6 +202,7 @@ if __name__ == '__main__':
     # print(lmr.removeElement([1,2,3,3,2,4,5], 3))
     # print(lmr.strStr('good', ''))
     print(lmr.countAndSay(4))
-    print(lmr.countAndSay(3))
+    print(lmr.lengthOfLongestSubstring('acgbsdseiasdg'))
+
 
 
