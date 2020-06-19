@@ -191,6 +191,19 @@ class Solution:
             temp[s[i]] = i + 1
         return ans
 
+    # 4.最长回文子串
+    def longestPalindrome(self, s):
+        ans = ''
+        if len(s) < 2:
+            return s
+        for i in range(len(s) - 1):
+            for j in range(i + 1, len(s)):
+                mid = (j + i) // 2
+                temp = s[mid + 1:j + 1] if len(s[i:j+1]) % 2 == 0 else s[mid:j + 1]
+                if s[i:mid + 1] == temp[::-1] and len(s[i:j + 1]) > len(ans):
+                    ans = s[i:j + 1]
+        return ans
+
 
 if __name__ == '__main__':
     lmr = Solution()
@@ -201,8 +214,10 @@ if __name__ == '__main__':
     # print(lmr.isValid('{[[([])]()]}'))
     # print(lmr.removeElement([1,2,3,3,2,4,5], 3))
     # print(lmr.strStr('good', ''))
-    print(lmr.countAndSay(4))
-    print(lmr.lengthOfLongestSubstring('acgbsdseiasdg'))
+    # print(lmr.countAndSay(4))
+    # print(lmr.lengthOfLongestSubstring('acgbsdseiasdg'))
+    print(lmr.longestPalindrome('babad'))
+
 
 
 
