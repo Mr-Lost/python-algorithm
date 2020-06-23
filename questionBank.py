@@ -1,3 +1,6 @@
+import re
+
+
 class ListNode:
     def __init__(self, x):
         self.val = x
@@ -227,6 +230,10 @@ class Solution:
                 flag = -flag
         return ''.join(temp)
 
+    # 8.字符串转换整数：从第一个非空字符开始，第一个字符可以是正负号，然后连接尽可能多的数字，有则返回
+    def myAtoi(self, s):
+        return max(min(*re.findall(r'^[-+]?\d+', s.lstrip()), 2**31 - 1), -2**31)
+
 
 if __name__ == '__main__':
     lmr = Solution()
@@ -241,6 +248,7 @@ if __name__ == '__main__':
     # print(lmr.lengthOfLongestSubstring('acgbsdseiasdg'))
     # print(lmr.longestPalindrome('bb'))
     print(lmr.convert('LEETCODEISHIRING', 3) == 'LCIRETOESIIGEDHN')
-
+    ans = re.findall(r'^[-+]?\d+', 's2  234253d 23'.strip())
+    print(min(ans, [3, 0]), type(ans))
 
 
