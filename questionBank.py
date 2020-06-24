@@ -205,7 +205,7 @@ class Solution:
                 if temp == temp[::-1] and len(temp) > len(ans):
                     ans = temp
         return ans
-        # 超时
+        # (1)超时
         # ans = ''
         # if len(s) < 2:
         #     return s
@@ -232,7 +232,22 @@ class Solution:
 
     # 8.字符串转换整数：从第一个非空字符开始，第一个字符可以是正负号，然后连接尽可能多的数字，有则返回
     def myAtoi(self, s):
-        return max(min(*re.findall(r'^[-+]?\d+', s.lstrip()), 2**31 - 1), -2**31)
+        temp = ''
+        flag = 0   # 是否带正负号
+        str1 = s.strip() + 'end'
+        if str1[0] == '-' or str1[0] == '+':
+            flag += 1
+            temp += str1[0]
+            str1 = str1[1:]
+        for i in range(len(str1)):
+            if str1[i].isdigit():
+                temp += str1[i]
+            else:
+                break
+        ans = 0 if len(temp) == flag else int(temp)   # ans=0当temp没有内容len(temp)=0，或仅有一个正负号的时候len(temp)=1
+        return max(min(ans, 2 ** 31 - 1), -2 ** 31)
+        # (1)正则
+        # return max(min(int(*re.findall(r'^[-+]?\d+', s.lstrip())), 2**31 - 1), -2**31)
 
 
 if __name__ == '__main__':
@@ -247,8 +262,7 @@ if __name__ == '__main__':
     # print(lmr.countAndSay(4))
     # print(lmr.lengthOfLongestSubstring('acgbsdseiasdg'))
     # print(lmr.longestPalindrome('bb'))
-    print(lmr.convert('LEETCODEISHIRING', 3) == 'LCIRETOESIIGEDHN')
-    ans = re.findall(r'^[-+]?\d+', 's2  234253d 23'.strip())
-    print(min(ans, [3, 0]), type(ans))
+    # print(lmr.convert('LEETCODEISHIRING', 3) == 'LCIRETOESIIGEDHN')
+    print(lmr.myAtoi('2.325'))
 
 
