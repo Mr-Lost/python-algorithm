@@ -249,6 +249,31 @@ class Solution:
         # (1)正则
         # return max(min(int(*re.findall(r'^[-+]?\d+', s.lstrip())), 2**31 - 1), -2**31)
 
+    # 9.盛最多水的容器：以数列中(index(i), i)在坐标系中做点，找出其中两点到x轴的垂线和x轴，三线围成的最大容器
+    def maxArea(self, height):
+        left, right = 0, len(height) - 1
+        ans = 0
+        while right > left:
+            width = right - left
+            temp = width * min(height[left], height[right])
+            ans = temp if temp > ans else ans
+            if height[left] < height[right]:
+                left += 1
+            else:
+                right -= 1
+        return ans
+
+    # 12.整数转罗马数字：设定该数为1-3999
+    def intToRoman(self, num):
+        N = ['M', 'CM', 'D', 'CD', 'C', 'XC', 'L', 'XL', 'X', 'IX', 'V', 'IV', 'I']
+        n = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1]
+        ans = ''
+        for index, i in enumerate(n):
+            if num // i:
+                ans += N[index] * (num // i)
+                num -= i * (num // i)
+        return ans
+
 
 if __name__ == '__main__':
     lmr = Solution()
@@ -263,6 +288,6 @@ if __name__ == '__main__':
     # print(lmr.lengthOfLongestSubstring('acgbsdseiasdg'))
     # print(lmr.longestPalindrome('bb'))
     # print(lmr.convert('LEETCODEISHIRING', 3) == 'LCIRETOESIIGEDHN')
-    print(lmr.myAtoi('2.325'))
+    # print(lmr.myAtoi('2.325'))
 
 
