@@ -274,6 +274,28 @@ class Solution:
                 num -= i * (num // i)
         return ans
 
+    # 15.三数之和
+    def threeSum(self, nums):
+        if len(nums) < 3:
+            return []
+        nums.sort()
+        ans = []
+        for i in range(len(nums)-1):
+            if nums[i] >= 0:
+                break
+            if nums[i] == nums[i-1]:
+                continue
+            for j in range(i+1, len(nums)):
+                if -(nums[i] + nums[j]) in nums[j+1:]:
+                    ans.append([nums[i], nums[j], -(nums[i] + nums[j])])
+        return ans
+
+        # left, right = i + 1, len(temp) - 1
+        # while left < right:
+        #     if temp[i] + temp[left] + temp[right] == 0:
+        #         ans.append([temp[i], temp[left], temp[right]])
+        #     left += 1
+
 
 if __name__ == '__main__':
     lmr = Solution()
@@ -289,5 +311,6 @@ if __name__ == '__main__':
     # print(lmr.longestPalindrome('bb'))
     # print(lmr.convert('LEETCODEISHIRING', 3) == 'LCIRETOESIIGEDHN')
     # print(lmr.myAtoi('2.325'))
+    print(lmr.threeSum([0,0,0]))
 
 
