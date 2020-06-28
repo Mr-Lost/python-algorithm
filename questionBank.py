@@ -281,22 +281,25 @@ class Solution:
         nums.sort()
         ans = []
         for i in range(len(nums)-1):
-            if nums[i] > 0:
+            if nums[i] > 0:   # 三个正数相加必不为0
                 break
-            if i > 0 and nums[i] == nums[i-1]:
+            if i > 0 and nums[i] == nums[i-1]:   # 过滤相同项
                 continue
-            for j in range(i+1, len(nums)):
-                if j > i+1 and nums[j] == nums[j-1]:
-                    continue
-                if -(nums[i] + nums[j]) in nums[j+1:]:
-                    ans.append([nums[i], nums[j], -(nums[i] + nums[j])])
+            left, right = i + 1, len(nums) - 1
+            while left < right:
+                temp = nums[i] + nums[left] + nums[right]
+                if temp == 0:
+                    ans.append([nums[i], nums[left], nums[right]])
+                    while left < right and nums[left] == nums[left+1]:
+                        left += 1
+                    while left < right and nums[right] == nums[right-1]:
+                        right -= 1
+                    left, right = left + 1, right - 1
+                elif temp > 0:
+                    right -= 1   # 在第一个数不变的情况下，减小较大数来减小三数之和
+                else:
+                    left += 1   # 在第一个数不变的情况下，增大较小数来增大三数之和
         return ans
-
-        # left, right = i + 1, len(temp) - 1
-        # while left < right:
-        #     if temp[i] + temp[left] + temp[right] == 0:
-        #         ans.append([temp[i], temp[left], temp[right]])
-        #     left += 1
 
 
 if __name__ == '__main__':
