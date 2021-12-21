@@ -403,6 +403,7 @@ if __name__ == "__main__":
     lmr = MyCollections()
     pro = producer()
     print(pro)
+    # print(my == sorted(pro))
     head = Node(pro[0])
     temp = head
     for i in range(1, len(pro)):
@@ -415,7 +416,6 @@ if __name__ == "__main__":
     ttree.left.right = BinaryTree(5)
     ttree.right.left = BinaryTree(6)
     ttree.right.right = BinaryTree(7)
-    # print(my == sorted(pro))
     lmr.treeOrderNonRecursion(ttree, 2)
 
 
